@@ -34,4 +34,4 @@ A full list of error codes can be found by navigating to /api/v1/system/api/erro
 There is no limit to API calls at this time
 
 # Documentation
-API documentation containing usage and examples can be found at https://documenter.getpostman.com/view/9873986/SzS7R6m8
+API documentation containing usage and examples can be found [here](https://documenter.getpostman.com/view/9873986/SzS7R6m8)
