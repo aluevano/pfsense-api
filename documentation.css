@@ -6,6 +6,7 @@ html {
 
 .logo {
     width: 90%;
+    max-width: 900px;
     display: block;
     margin: 0 auto;
 }
@@ -25,6 +26,7 @@ p, h1, h2, h3, pre, li {
 .content_container {
     background-color: #727272;
     width: 90%;
+    max-width: 1280px;
     margin: 0 auto;
     border-radius: 10px;
 
