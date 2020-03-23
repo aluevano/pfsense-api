@@ -1,0 +1,2642 @@
+{
+  "request": [
+    {
+      "name": "/users/",
+      "description": "Reads the local user database",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/users/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/users/add/",
+      "description": "Add a new pfSense user to the local database",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/users/add/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "username",
+          "value": "<string>",
+          "description": "Username to assign new user"
+        },
+        {
+          "key": "password",
+          "value": "<string>",
+          "description": "Password to assign new user"
+        },
+        {
+          "key": "descr",
+          "value": "<string>",
+          "description": "Descriptive name to assign new user (optional)"
+        },
+        {
+          "key": "authorizedkeys",
+          "value": "<string>",
+          "description": "Base64 encoded authorized SSH keys to assign new user (optional)"
+        },
+        {
+          "key": "ipsecpsk",
+          "value": "<string>",
+          "description": "IPsec pre-shared key to assign new user (optional)"
+        },
+        {
+          "key": "disabled",
+          "value": "bool",
+          "description": "Disable user account upon creation. Do not include to leave enabled. (optional)"
+        },
+        {
+          "key": "expires",
+          "value": "<string>",
+          "description": "Expiration date for user account in  MM/DD/YYYY format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/users/modify/",
+      "description": "Update an existing user configuration",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/users/modify/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "username",
+          "value": "<string>",
+          "description": "Username to modify"
+        },
+        {
+          "key": "password",
+          "value": "<string>",
+          "description": "Change user password (optional)"
+        },
+        {
+          "key": "descr",
+          "value": "<string>",
+          "description": "Descriptive name to assign the user (optional)"
+        },
+        {
+          "key": "authorizedkeys",
+          "value": "<string>",
+          "description": "Base64 encoded authorized keys to add to user (optional)"
+        },
+        {
+          "key": "ipsecpsk",
+          "value": "<string>",
+          "description": "IPsec pre-shared key to assign to user (optional)"
+        },
+        {
+          "key": "disabled",
+          "value": "bool",,
+          "description": "Disable user account  (optional)"
+        },
+        {
+          "key": "expires",
+          "value": "<string>",
+          "description": "Expiration date for user account in  MM/DD/YYYY format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/users/delete/",
+      "description": "Delete an existing pfSense user from the local database",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/users/delete/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "username",
+          "value": "<string>",
+          "description": "Username to to delete"
+        }
+      ]
+    },
+    {
+      "name": "/users/add/privs/",
+      "description": "Add a new privilege to an existing user _Note: this function is stateless. Privileges that are already assigned will still receive a 200 OK response as long as the end result contains the privilege in the user's configuration_",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/users/add/privs/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "username",
+          "value": "<string>",
+          "description": "Username to grant new privilege"
+        },
+        {
+          "key": "priv",
+          "value": "<string>",
+          "description": "Name of new privilege to assign. Multiple priviileges may be assigned at once if passed in as  array. Privilege name will match the POST data name found in the webConfigurator. "
+        }
+      ]
+    },
+    {
+      "name": "/users/delete/privs/",
+      "description": "Delete an existing privilege from an existing user",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/users/delete/privs/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "username",
+          "value": "<string>",
+          "description": "Username to remove privilege"
+        },
+        {
+          "key": "priv",
+          "value": "<string>",
+          "description": "Name of new privilege to delete. Multiple priviileges may be deleted at once if passed in as  array. Privilege name will match the POST data name found in the webConfigurator. "
+        }
+      ]
+    },
+    {
+      "name": "/users/add/groups/",
+      "description": "Assign user to a group _Note: this function is stateless. Groups that are already assigned will still receive a 200 OK response as long as the end result contains the group in the user's configuration_",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/users/add/groups/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "username",
+          "value": "<string>",
+          "description": "Username to grant new privilege"
+        },
+        {
+          "key": "group",
+          "value": "<string>",
+          "description": "Name of group to assign. Multiple groups may be assigned at once if passed in as array. Group name must match exactly as is displayed in webConfigurator."
+        }
+      ]
+    },
+    {
+      "name": "/users/delete/groups/",
+      "description": "Delete user from a group",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/users/delete/groups/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "username",
+          "value": "<string>",
+          "description": "Username to grant new privilege"
+        },
+        {
+          "key": "group",
+          "value": "<string>",
+          "description": "Name of group to delete. Multiple groups may be deleted at once if passed in as array. Group name must match exactly as is displayed in webConfigurator."
+        }
+      ]
+    },
+    {
+      "name": "/users/authservers/",
+      "description": "Read configured LDAP and RADIUS authentication servers",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/users/authservers/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/users/authservers/ldap/",
+      "description": "Read configured LDAP authentication servers",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/users/authservers/ldap/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/users/authservers/ldap/add/",
+      "description": "Add a new remote LDAP authentication server",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/users/authservers/ldap/add/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API token"
+        },
+        {
+          "key": "name",
+          "value": "<string>",
+          "description": "Specify a descriptive name for the authentication server"
+        },
+        {
+          "key": "host",
+          "value": "<string>",
+          "description": "Specify the remote hostname or IP of the LDAP server to query"
+        },
+        {
+          "key": "ldap_port",
+          "value": "<string> or <int>",
+          "description": "Specify the remote LDAP port"
+        },
+        {
+          "key": "ldap_urltype",
+          "value": "<string>",
+          "description": "Specify the transport method to use for LDAP queries (`standard`, `starttls`, `encrypted`)"
+        },
+        {
+          "key": "ldap_protver",
+          "value": "<string> or <int>",
+          "description": "Specify the LDAP version used by the remote authentication server"
+        },
+        {
+          "key": "ldap_scope",
+          "value": "<string>",
+          "description": "Specify the LDAP search scope (`subtree` for entire subtree, `one` for one level)"
+        },
+        {
+          "key": "ldap_basedn",
+          "value": "<string>",
+          "description": "Specify the base DN of LDAP queries"
+        },
+        {
+          "key": "ldap_authcn",
+          "value": "<string>",
+          "description": "Specify authentication container(s)"
+        },
+        {
+          "key": "ldap_extended_query",
+          "value": "<string>",
+          "description": "Specify extended LDAP queries. Specifying any value enables LDAP extended queries (optional)"
+        },
+        {
+          "key": "ldap_binddn",
+          "value": "<string>",
+          "description": "Specify the bind DN to use for authentication"
+        },
+        {
+          "key": "ldap_bindpw",
+          "value": "<string>",
+          "description": "Specify the bind password to use for authentication"
+        },
+        {
+          "key": "ldap_attr_user",
+          "value": "<string>",
+          "description": "Specify the LDAP user naming attribute"
+        },
+        {
+          "key": "ldap_attr_group",
+          "value": "<string>",
+          "description": "Specify the LDAP group naming attribute"
+        },
+        {
+          "key": "ldap_attr_member",
+          "value": "<string>",
+          "description": "Specify the LDAP group member attribute"
+        },
+        {
+          "key": "ldap_attr_groupobj",
+          "value": "<string>",
+          "description": "Specify a group object class. Specifying any value enables RFC2307 mode (optional)"
+        },
+        {
+          "key": "ldap_utf8",
+          "value": "<bool>",
+          "description": "Enable UTF-8 encoded LDAP parameters (optional)"
+        },
+        {
+          "key": "ldap_timeout",
+          "value": "<string> or <int>",
+          "description": "Set the connection timeout for LDAP requests. Defaults to 20 (optional)"
+        },
+        {
+          "key": "active",
+          "value": "<bool>",
+          "description": "Set this authentication server as the system default (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/users/authservers/ldap/delete/",
+      "description": "Delete an existing LDAP authentication server _Note: this function does not check for the existence of an existing configuration, rather that it does not exist at the end of the call_",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/users/authservers/ldap/delete/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API token"
+        },
+        {
+          "key": "name",
+          "value": "<string>",
+          "description": "Specify the name of the LDAP authentication server to delete"
+        }
+      ]
+    },
+    {
+      "name": "/users/authservers/radius/delete/",
+      "description": "Delete an existing RADIUS authentication server _Note: this function does not check for the existence of an existing configuration, rather that it does not exist at the end of the call_",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/users/authservers/radius/delete/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API token"
+        },
+        {
+          "key": "name",
+          "value": "<string>",
+          "description": "Specify the name of the RADIUS authentication server to delete"
+        }
+      ]
+    },
+    {
+      "name": "/users/authservers/delete/",
+      "description": "Delete an existing authentication server. This can be either a RADIUS or LDAP authentication server _Note: this function does not check for the existence of an existing configuration, rather that it does not exist at the end of the call_",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/users/authservers/delete/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API token"
+        },
+        {
+          "key": "name",
+          "value": "<string>",
+          "description": "Specify the name of the  authentication server to delete"
+        }
+      ]
+    },
+    {
+      "name": "/users/authservers/radius/",
+      "description": "Read configured RADIUS authentication servers",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/users/authservers/radius/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/interfaces/",
+      "description": "Read interface assignements and configuration. _Note: Extended search requires array of extended attributes in JSON format_",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/interfaces/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/interfaces/add/",
+      "description": "Add a new VLAN interface",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/interfaces/add/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "if",
+          "value": "<string>",
+          "description": "Specify the physical interface to configure"
+        },
+        {
+          "key": "descr",
+          "value": "<string>",
+          "description": "Set a descriptive name for the new interface"
+        },
+        {
+          "key": "enable",
+          "value": "<bool>",
+          "description": "Enable the interface upon creation. Do not specify this value to leave disabled."
+        },
+        {
+          "key": "spoofmac",
+          "value": "<string>",
+          "description": "Set a custom MAC address to the interface (optional)"
+        },
+        {
+          "key": "mtu",
+          "value": "<string> or <int>",
+          "description": "Set a custom MTU for this interface (optional)"
+        },
+        {
+          "key": "mss",
+          "value": "<string> or <int>",
+          "description": "Set a custom MSS for the this interface (optional)"
+        },
+        {
+          "key": "media",
+          "value": "<string>",
+          "description": "Set a custom speed/duplex setting for this interface (optional)"
+        },
+        {
+          "key": "type",
+          "value": "<string>",
+          "description": "Set the interface IPv4  configuration type (optional)"
+        },
+        {
+          "key": "type6",
+          "value": "<string>",
+          "description": "Set the interface IPv6  configuration type (optional)"
+        },
+        {
+          "key": "ipaddr",
+          "value": "<string>",
+          "description": "Set the interface's static IPv4 address (required if `type` is set to `staticv4`)"
+        },
+        {
+          "key": "subnet",
+          "value": "<string> or <int>",
+          "description": "Set the interface's static IPv4 address's subnet bitmask (required if `type` is set to `staticv4`)"
+        },
+        {
+          "key": "gateway",
+          "value": "<string>",
+          "description": "Set the interface network's upstream gateway. This is only necessary on WAN/UPLINK interfaces (optional)"
+        },
+        {
+          "key": "ipaddrv6",
+          "value": "<string>",
+          "description": "Set the interface's static IPv6 address (required if `type6` is set to `staticv6`)"
+        },
+        {
+          "key": "subnetv6",
+          "value": "<string> or <int>",
+          "description": "Set the interface's static IPv6 address's subnet bitmask (required if `type6` is set to `staticv6`)"
+        },
+        {
+          "key": "gatewayv6",
+          "value": "<string>",
+          "description": "Set the interface network's upstream IPv6 gateway. This is only necessary on WAN/UPLINK interfaces (optional)"
+        },
+        {
+          "key": "ipv6usev4iface",
+          "value": "<bool>",
+          "description": "Allow IPv6 to use IPv4 uplink connection (optional)"
+        },
+        {
+          "key": "dhcphostname",
+          "value": "<string>",
+          "description": "Set the IPv4 DHCP hostname. Only available when `type` is set to `dhcp` (optional)"
+        },
+        {
+          "key": "dhcprejectfrom",
+          "value": "<string> or <array>",
+          "description": "Set the IPv4 DHCP rejected servers. You may pass values in as array or as comma seperated string. Only available when `type` is set to `dhcp` (optional)"
+        },
+        {
+          "key": "alias-address",
+          "value": "<string>",
+          "description": "Set the IPv4 DHCP address alias. The value in this field is used as a fixed alias IPv4 address by the DHCP client (optional)"
+        },
+        {
+          "key": "alias-subnet",
+          "value": "<string> or <int>",
+          "description": "Set the IPv4 DHCP address aliases subnet (optional)"
+        },
+        {
+          "key": "adv_dhcp_pt_timeout",
+          "value": "<string> or <int>",
+          "description": "Set the IPv4 DHCP protocol timeout interval. Must be numeric value greater than 1 (optional)"
+        },
+        {
+          "key": "adv_dhcp_pt_retry",
+          "value": "<string> or <int>",
+          "description": "Set the IPv4 DHCP protocol retry interval. Must be numeric value greater than 1 (optional)"
+        },
+        {
+          "key": "adv_dhcp_pt_select_timeout",
+          "value": "<string> or <int>",
+          "description": "Set the IPv4 DHCP protocol select timeout interval. Must be numeric value greater than 0 (optional)"
+        },
+        {
+          "key": "adv_dhcp_pt_reboot",
+          "value": "<string> or <int>",
+          "description": "Set the IPv4 DHCP protocol reboot interval. Must be numeric value greater than 1 (optional)"
+        },
+        {
+          "key": "adv_dhcp_pt_backoff_cutoff",
+          "value": "<string> or <int>",
+          "description": "Set the IPv4 DHCP protocol backoff cutoff interval. Must be numeric value greater than 1 (optional)"
+        },
+        {
+          "key": "adv_dhcp_pt_initial_interval",
+          "value": "<string> or <int>",
+          "description": "Set the IPv4 DHCP protocol initial interval. Must be numeric value greater than 1 (optional)"
+        },
+        {
+          "key": "adv_dhcp_config_advanced",
+          "value": "<bool>",
+          "description": "Enable the IPv4 DHCP advanced configuration options. This enables the DHCP options listed below (optional)"
+        },
+        {
+          "key": "adv_dhcp_send_options",
+          "value": "<string>",
+          "description": "Set a custom IPv4 `send` option (optional)"
+        },
+        {
+          "key": "adv_dhcp_request_options",
+          "value": "<string>",
+          "description": "Set a custom IPv4 `request` option (optional)"
+        },
+        {
+          "key": "adv_dhcp_request_options",
+          "value": "<string>",
+          "description": "Set a custom IPv4 `required` option (optional)"
+        },
+        {
+          "key": "adv_dhcp_option_modifiers",
+          "value": "<string>",
+          "description": "Set a custom IPv4 optional modifier (optional)"
+        },
+        {
+          "key": "adv_dhcp_config_file_override",
+          "value": "<bool>",
+          "description": "Enable local DHCP configuration file override (optional)"
+        },
+        {
+          "key": "adv_dhcp_config_file_override_file",
+          "value": "<string>",
+          "description": "Set the custom DHCP configuration file's absolute path. This file must exist beforehand (optional)"
+        },
+        {
+          "key": "dhcpvlanenable",
+          "value": "<bool>",
+          "description": "Enable DHCP VLAN prioritization (optional)"
+        },
+        {
+          "key": "dhcpcvpt",
+          "value": "<string> or <int>",
+          "description": "Set the DHCP VLAN priority. Must be a numeric value between 1 and 7 (optional)"
+        },
+        {
+          "key": "gateway-6rd",
+          "value": "<string>",
+          "description": "Set the 6RD interface IPv4 gateway address. Only required when `type6` is set to `6rd`"
+        },
+        {
+          "key": "prefix-6rd",
+          "value": "<string>",
+          "description": "Set the 6RD IPv6 prefix assigned by the ISP. Only required when `type6` is set to `6rd`"
+        },
+        {
+          "key": "prefix-6rd-v4plen",
+          "value": "<int> or <string>",
+          "description": "Set the 6RD IPv4 prefix length. This is typically assigned by the ISP. Only available when `type6` is set to `6rd`"
+        },
+        {
+          "key": "track6-interface",
+          "value": "<string>",
+          "description": "Set the Track6 dynamic IPv6 interface. This must be a dynamically configured IPv6 interface. You may specify either the interface's descriptive name, the pfSense ID (wan, lan, optx), or the physical interface id (e.g. igb0). Only required with `type6` is set to `track6`"
+        },
+        {
+          "key": "track6-prefix-id-hex",
+          "value": "<string> or <int>",
+          "description": "Set the IPv6 prefix ID. The value in this field is the (Delegated) IPv6 prefix ID. This determines the configurable network ID based on the dynamic IPv6 connection. The default value is 0. Only available when `type6` is set to `track6`"
+        }
+      ]
+    },
+    {
+      "name": "/interfaces/delete/",
+      "description": "Delete an existing interface",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/interfaces/delete/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "if",
+          "value": "<string>",
+          "description": "Specify the interface to delete. You may specify either the interface's descriptive name, the pfSense ID (wan, lan, optx), or the physical interface id (e.g. igb0)"
+        }
+      ]
+    },
+    {
+      "name": "/interfaces/vlans/",
+      "description": "Read VLAN assignements and configuration. _Note: Extended search requires array of extended attributes in JSON format_",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/interfaces/vlans/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/interfaces/vlans/add/",
+      "description": "Add a new VLAN interface",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/interfaces/vlans/add/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "if",
+          "value": "<string>",
+          "description": "Set the parent interface to add the new VLAN to"
+        },
+        {
+          "key": "tag",
+          "value": "<string> or <int>",
+          "description": "Set the VLAN tag to add to the parent interface"
+        },
+        {
+          "key": "pcp",
+          "value": "<string> or <int>",
+          "description": "Set a 802.1Q VLAN priority. Must be an integer value between 0 and 7 (optional)"
+        },
+        {
+          "key": "descr",
+          "value": "<string>",
+          "description": "Set a description for the new VLAN interface"
+        }
+      ]
+    },
+    {
+      "name": "/interfaces/vlans/modify/",
+      "description": "Modify an existing VLAN configuration\n\n_Note: Unlike the pfSense webConfigurator, you CAN modify an existing VLAN (including parent interface and VLAN tag) while the VLAN is assigned to an active interface. When doing so, please expect up to 5 seconds of downtime to the associated VLAN while the backend configuration is changed_",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/interfaces/vlans/modify/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "vlanif",
+          "value": "<string>",
+          "description": "Select VLAN to modify by full interface ID (e.g. `em0.2`)"
+        },
+        {
+          "key": "id",
+          "value": "<string> or <int>",
+          "description": "Select VLAN to modify by pfSense ID. Required if `vlanif` was not specified previously. If `vlanif` is specified, this value will be overwritten."
+        },
+        {
+          "key": "if",
+          "value": "<string>",
+          "description": "Set the parent interface to add the new VLAN to"
+        },
+        {
+          "key": "tag",
+          "value": "<string> or <int>",
+          "description": "Set the VLAN tag to add to the parent interface"
+        },
+        {
+          "key": "pcp",
+          "value": "<string> or <int>",
+          "description": "Set a 802.1Q VLAN priority. Must be an integer value between 0 and 7 (optional)"
+        },
+        {
+          "key": "descr",
+          "value": "<string>",
+          "description": "Set a description for the new VLAN interface"
+        }
+      ]
+    },
+    {
+      "name": "/interfaces/vlans/delete/",
+      "description": "Delete VLAN assignment and configuration",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/interfaces/vlans/delete/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "vlanif",
+          "value": "<string>",
+          "description": "Delete VLAN by full interface name (e.g. `em0.2`). "
+        },
+        {
+          "key": "id",
+          "value": "<string> or <int>",
+          "description": "Delete VLAN by pfSense ID. Required if `vlanif` was not specified previously. If `vlanif` is specified, this value will be overwritten."
+        }
+      ]
+    },
+    {
+      "name": "/firewall/aliases/",
+      "description": "Read firewall aliases. _Note: Extended search requires array of extended attributes in JSON format_",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/firewall/aliases/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/firewall/aliases/add/",
+      "description": "Add a new host, network or port firewall alias",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/firewall/aliases/add/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "name",
+          "value": "<string>",
+          "description": "Name of new alias. _Only alpha-numeric and underscore characters are allowed, other characters will be replaced_"
+        },
+        {
+          "key": "type",
+          "value": "<string>",
+          "description": "Alias type. Current supported alias types are`host`, `network`, and `port` aliases."
+        },
+        {
+          "key": "descr",
+          "value": "<string>",
+          "description": "Description of new alias (optional)"
+        },
+        {
+          "key": "address",
+          "value": "<string> or <array>",
+          "description": "Array of values to add to alias. A single value may be specified as string."
+        },
+        {
+          "key": "detail",
+          "value": "<string> or <array>",
+          "description": "Array of descriptions for alias values. Descriptions must match the order the that they are specified in the `address` array. Single descriptions may be specified as string"
+        }
+      ]
+    },
+    {
+      "name": "/firewall/aliases/modify/",
+      "description": "Modify an existing firewall alias",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/firewall/aliases/modify/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "name",
+          "value": "<string>",
+          "description": "Name of existing alias to modify. "
+        },
+        {
+          "key": "new_name",
+          "value": "<string>",
+          "description": "Change name of alias (optional)"
+        },
+        {
+          "key": "type",
+          "value": "<string>",
+          "description": "Change type of alias (optional)"
+        },
+        {
+          "key": "descr",
+          "value": "<string>",
+          "description": "Change alias description (optional)"
+        },
+        {
+          "key": "address",
+          "value": "<string> or <array>",
+          "description": "Overwrite existing alias addresses with new addresses. Multiple values may be passed in as array, singular values may be passed in as string (optional)"
+        },
+        {
+          "key": "detail",
+          "value": "<string> or <array>",
+          "description": "Overwrite existing alias address details with new details. Multiple values may be passed in as array, singular values may be passed in as string. Detail values must match index of alias addresses (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/firewall/aliases/add/address/",
+      "description": "Append new address values to an existing firewall alias",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/firewall/aliases/add/address/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "name",
+          "value": "<string>",
+          "description": "Name of alias to add new address values"
+        },
+        {
+          "key": "address",
+          "value": "<string> or <array>",
+          "description": "Array of values to add to alias. A single value may be specified as string."
+        },
+        {
+          "key": "detail",
+          "value": "<string> or <array>",
+          "description": "Array of descriptions for alias values. Descriptions must match the order the that they are specified in the `address` array. Single descriptions may be specified as string"
+        }
+      ]
+    },
+    {
+      "name": "/firewall/aliases/delete/address/",
+      "description": "Delete existing address value(s) from an existing firewall alias",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/firewall/aliases/delete/address/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "name",
+          "value": "<string>",
+          "description": "Name of alias to delete address values from"
+        },
+        {
+          "key": "address",
+          "value": "<string>",
+          "description": "Array of values to delete from alias. A single value may be specified as string."
+        }
+      ]
+    },
+    {
+      "name": "/firewall/aliases/delete/",
+      "description": "Delete an existing alias and reload filter. _Note: this function is stateless and does not check for the existence of an alias, only ensures there is not an alias matching the given alias name at the end of the call_",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/firewall/aliases/delete/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "name",
+          "value": "<string>",
+          "description": "Name of alias to delete. This alias must NOT be in use elsewhere in configuration"
+        }
+      ]
+    },
+    {
+      "name": "/firewall/rules/",
+      "description": "Read firewall rules. _Note: Extended search requires array of extended attributes in JSON format_",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/firewall/rules/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<string>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/firewall/rules/add/",
+      "description": "Add a new firewall rule and reload the firewall filter",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/firewall/rules/add/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "type",
+          "value": "<string>",
+          "description": "Set a firewall rule type (`pass`, `block`, `reject`)"
+        },
+        {
+          "key": "interface",
+          "value": "<string>",
+          "description": "Set which interface the rule will apply to. You may specify either the interface's descriptive name, the pfSense ID (wan, lan, optx), or the physical interface id (e.g. igb0). Floating rules are not supported. "
+        },
+        {
+          "key": "ipprotocol",
+          "value": "<string>",
+          "description": "Set which IP protocol(s) the rule will apply to (`inet`, `inet6`, `inet46`)"
+        },
+        {
+          "key": "protocol",
+          "value": "<string>",
+          "description": "Set which transfer protocol the rule will apply to. If `tcp`, `udp`, `tcp/dup`, you must define a source and destination port"
+        },
+        {
+          "key": "icmptype",
+          "value": "<string> or <array>",
+          "description": "Set the ICMP subtype of the firewall rule. Multiple values may be passed in as array, single values may be passed as string. _Only available when `protocol` is set to `icmp`. If `icmptype` is not specified all subtypes are assumed_"
+        },
+        {
+          "key": "src",
+          "value": "<string>",
+          "description": "Set the source address of the firewall rule. This may be a single IP, network CIDR, alias name, or interface. When specifying an interface, you may use the physical interface ID, the descriptive interfance name, or the pfSense ID. To use only interface address, add `ip` to the end of the interface name otherwise the entire interface's subnet is implied. To negate the context of the source address, you may prepend the address with `!`"
+        },
+        {
+          "key": "dst",
+          "value": "<string>",
+          "description": "Set the destination address of the firewall rule. This may be a single IP, network CIDR, alias name, or interface. When specifying an interface, you may use the physical interface ID, the descriptive interface name, or the pfSense ID. To only use interface address, add `ip` to the end of the interface name otherwise the entire interface's subnet is implied. To negate the context of the source address, you may prepend the address with `!`"
+        },
+        {
+          "key": "srcport",
+          "value": "<string> or <int>",
+          "description": "Set the TCP and/or UDP source port of the firewall rule. This is only necessary if you have specified the `protocol` to `tcp`, `udp`, `tcp/udp`"
+        },
+        {
+          "key": "dstport",
+          "value": "<string> or <int>",
+          "description": "Set the TCP and/or UDP destination port of the firewall rule. This is only necessary if you have specified the `protocol` to `tcp`, `udp`, `tcp/udp`"
+        },
+        {
+          "key": "gateway",
+          "value": "<string>",
+          "description": "Set the routing gateway traffic will take upon match (optional)"
+        },
+        {
+          "key": "disabled",
+          "value": "<bool>",
+          "description": "Disable the rule upon creation (optional)"
+        },
+        {
+          "key": "descr",
+          "value": "<string>",
+          "description": "Set a description for the rule (optional)"
+        },
+        {
+          "key": "log",
+          "value": "<bool>",
+          "description": "Enabling rule matche logging (optional)"
+        },
+        {
+          "key": "top",
+          "value": "<bool>",
+          "description": "Add firewall rule to top of access control list (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/firewall/rules/delete/",
+      "description": "Delete an existing firewall rule by ID _Note: use caution when making this call, removing rules may result in API/webConfigurator lockout_",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/firewall/rules/delete/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "id",
+          "value": "<string> or <int>",
+          "description": "Specify the rule ID to delete"
+        }
+      ]
+    },
+    {
+      "name": "/firewall/virtualips/",
+      "description": "Read virtual IP assignments. _Note: Extended search requires array of extended attributes in JSON format_",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/firewall/virtualips/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/firewall/virtualips/add/",
+      "description": "Add a new virtual IP",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/firewall/virtualips/add/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "mode",
+          "value": "<string>",
+          "description": "Set our virtual IP mode (`ipalias`, `carp`, `proxyarp`, `other`)"
+        },
+        {
+          "key": "interface",
+          "value": "<string>",
+          "description": "Set the interface that will listen for the virtual IP. You may specify either the interface's descriptive name, the pfSense ID (wan, lan, optx), or the physical interface id (e.g. igb0)"
+        },
+        {
+          "key": "subnet",
+          "value": "<string>",
+          "description": "Set the IP or subnet (CIDR) for the virtual IP(s)"
+        },
+        {
+          "key": "descr",
+          "value": "<string>",
+          "description": "Set a description for the new virtual IP (optional)"
+        },
+        {
+          "key": "noexpand",
+          "value": "<bool>",
+          "description": "Disable IP expansion for the virtual IP address. This is only available on `proxyarp` and `other` mode virtual IPs (optional)"
+        },
+        {
+          "key": "vhid",
+          "value": "<string> or <int>",
+          "description": "Set the VHID for the new CARP virtual IP. Only available for `carp` mode. Leave unspecified to automatically detect the next available VHID. (optional)"
+        },
+        {
+          "key": "advbase",
+          "value": "<string> or <int>",
+          "description": "Set an advertisement base for the new CARP virtual IP. Only available for `carp` mode. Leave unspecified to assume default value of `1`. (optional)"
+        },
+        {
+          "key": "advskew",
+          "value": "<string> or <int>",
+          "description": "Set an advertisement skew for the new CARP virtual IP. Only available for `carp` mode. Leave unspecified to assume default value of `0`. (optional)"
+        },
+        {
+          "key": "password",
+          "value": "<string>",
+          "description": "Set a password for the new CARP virtual IP. Required for `carp` mode."
+        }
+      ]
+    },
+    {
+      "name": "/firewall/virtualips/delete/",
+      "description": "Delete an existing virtual IP by ID",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/firewall/virtualips/delete/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "id",
+          "value": "<string> or <int>",
+          "description": "Specify the rule ID to delete"
+        }
+      ]
+    },
+    {
+      "name": "/firewall/nat/",
+      "description": "Read NAT configuration and rules. _Note: Extended search requires array of extended attributes in JSON format_",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/firewall/nat/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/firewall/nat/portforwards/",
+      "description": "Read NAT port forward rules. _Note: Extended search requires array of extended attributes in JSON format_",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/firewall/nat/portforwards/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/firewall/nat/portforwards/add/",
+      "description": "Add a new NAT port forward rule",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/firewall/nat/portforwards/add/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "type",
+          "value": "<string>",
+          "description": "Set a firewall rule type (`pass`, `block`, `reject`)"
+        },
+        {
+          "key": "interface",
+          "value": "<string>",
+          "description": "Set which interface the rule will apply to. You may specify either the interface's descriptive name, the pfSense ID (wan, lan, optx), or the physical interface id (e.g. igb0). Floating rules are not supported. "
+        },
+        {
+          "key": "protocol",
+          "value": "<string>",
+          "description": "Set which transfer protocol the rule will apply to. If `tcp`, `udp`, `tcp/udp`, you must define a source and destination port"
+        },
+        {
+          "key": "src",
+          "value": "<string>",
+          "description": "Set the source address of the firewall rule. This may be a single IP, network CIDR, alias name, or interface. When specifying an interface, you may use the physical interface ID, the descriptive interfance name, or the pfSense ID. To use only interface address, add `ip` to the end of the interface name otherwise the entire interface's subnet is implied. To negate the context of the source address, you may prepend the address with `!`"
+        },
+        {
+          "key": "dst",
+          "value": "<string>",
+          "description": "Set the destination address of the firewall rule. This may be a single IP, network CIDR, alias name, or interface. When specifying an interface, you may use the physical interface ID, the descriptive interface name, or the pfSense ID. To only use interface address, add `ip` to the end of the interface name otherwise the entire interface's subnet is implied. To negate the context of the source address, you may prepend the address with `!`"
+        },
+        {
+          "key": "srcport",
+          "value": "<string> or <int>",
+          "description": "Set the TCP and/or UDP source port of the firewall rule. This is only necessary if you have specified the `protocol` to `tcp`, `udp`, `tcp/udp`"
+        },
+        {
+          "key": "dstport",
+          "value": "<string> or <int>",
+          "description": "Set the TCP and/or UDP destination port of the firewall rule. This is only necessary if you have specified the `protocol` to `tcp`, `udp`, `tcp/udp`"
+        },
+        {
+          "key": "target",
+          "value": "<string>",
+          "description": "Specify the IP to forward traffic to "
+        },
+        {
+          "key": "local-port",
+          "value": "<string>",
+          "description": "Set the TCP and/or UDP  port to forward traffic to. This is only necessary if you have specified the `protocol` to `tcp`, `udp`, `tcp/udp`. Port ranges may be specified using colon or hyphen."
+        },
+        {
+          "key": "natreflection",
+          "value": "<string>",
+          "description": "Set the NAT reflection mode explicitly (optional)"
+        },
+        {
+          "key": "descr",
+          "value": "<string>",
+          "description": "Set a description for the rule (optional)"
+        },
+        {
+          "key": "disabled",
+          "value": "<bool>",
+          "description": "Disable the rule upon creation (optional)"
+        },
+        {
+          "key": "top",
+          "value": "<bool>",
+          "description": "Add firewall rule to top of access control list (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/firewall/nat/portforwards/delete/",
+      "description": "Delete an existing NAT rule by ID _Note: use caution when making this call, removing rules may result in API/webConfigurator lockout_",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/firewall/nat/portforwards/delete/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "id",
+          "value": "<string> or <int>",
+          "description": "Specify the rule ID to delete"
+        }
+      ]
+    },
+    {
+      "name": "/firewall/states/",
+      "description": "Read the current firewall states",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/firewall/states/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/firewall/states/size/",
+      "description": "Read the maximum firewall state size, the current firewall state size, and the default firewall state size",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/firewall/states/size/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/firewall/states/size/modify/",
+      "description": "Modify the maximum number of firewall state table entries allowed by the system _Note: use caution when making this call, setting the maximum state table size to a value lower than the current number of firewall state entries WILL choke the system_",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/firewall/states/size/modify/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "maximumstates",
+          "value": "<string> or <int>",
+          "description": "Set the maximum number of firewall state entries. Specify an integer above 10, or string \"default\" to revert to the system default size"
+        }
+      ]
+    },
+    {
+      "name": "/system/version/",
+      "description": "Read pfSense version data. This includes base version, patch version, buildtime, and last commit",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/system/version/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/system/arp/",
+      "description": "Read the current ARP table",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/system/arp/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/system/arp/delete",
+      "description": "Delete an IP from the ARP table _Note: this function is stateless. No post-run check is performed to ensure the entry has been removed_",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/system/arp/delete/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "ip",
+          "value": "<string>",
+          "description": "IPv4 address to delete from ARP table"
+        }
+      ]
+    },
+    {
+      "name": "/system/config/",
+      "description": "Reads entire pfSense configuration. _Note: Extended search requires array of extended attributes in JSON format_",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/system/config/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/system/hostname/",
+      "description": "Read pfSense system hostname. _Note: Extended search requires array of extended attributes in JSON format_",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/system/hostname/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/system/hostname/modify",
+      "description": "Change our system hostname",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/system/hostname/modify/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "hostname",
+          "value": "<string>",
+          "description": "Set the hostname portion of the system hostname. Do not specify to retain existing value (optional)"
+        },
+        {
+          "key": "domain",
+          "value": "<string>",
+          "description": "Set the domain portion of the system hostname. Do not specify to retain existing value (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/system/certificates/",
+      "description": "Read available SSL certificates. _Note: Extended search requires array of extended attributes in JSON format_",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/system/certificates/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/system/certificates/add/",
+      "description": "Add a new SSL certificate",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/system/certificates/add/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "method",
+          "value": "<string>",
+          "description": "Set the method used to add the certificate. Current supported methods (`import`)"
+        },
+        {
+          "key": "cert",
+          "value": "<string>",
+          "description": "Specify the Base64 encoded PEM certificate to import"
+        },
+        {
+          "key": "key",
+          "value": "<string>",
+          "description": "Specify the corresponding Base64 encoded certificate key"
+        },
+        {
+          "key": "descr",
+          "value": "<string>",
+          "description": "Set a descriptive name for the certificate"
+        },
+        {
+          "key": "active",
+          "value": "<bool>",
+          "description": "Set this certificate as the active certificate used by the webConfigurator (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/system/certificates/delete/",
+      "description": "Delete an existing certificate",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/system/certificates/delete/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "refid",
+          "value": "<string>",
+          "description": "Specify the refid of the certificate to delete (required if `id` and `descr` are not defined)"
+        },
+        {
+          "key": "id",
+          "value": "<string>",
+          "description": "Specify the id number of the certificate to delete (required if `refid` and `descr` are not defined)"
+        },
+        {
+          "key": "descr",
+          "value": "<string>",
+          "description": "Specify the description of the certificate to delete (required if `id` and `refid` are not defined) _Note: if multiple certificates exist with the same name, only the first matching certificate will be deleted_"
+        }
+      ]
+    },
+    {
+      "name": "/system/api/",
+      "description": "Read current API configuration _Note: Extended search requires array of extended attributes in JSON format_",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/system/api/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/system/api/errors/",
+      "description": "Read our error code library. This function does NOT require authentication and is intended to be used by third-party scripts/software to translate error codes to their full error message.",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/system/api/errors/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/system/dns/",
+      "description": "Read current system DNS configuration _Note: Extended search requires array of extended attributes in JSON format_",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/system/dns/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/system/dns/modify/",
+      "description": "Modify the existing system DNS configuration",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/system/dns/modify/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "dnsserver",
+          "value": "<array> or <string>",
+          "description": "Specify which DNS servers to assign the system. Single values may be passed in as string, multiple values may be passed in as array of strings. Any existing configuration will be overwritten (optional)"
+        },
+        {
+          "key": "dnsallowoverride",
+          "value": "<bool>",
+          "description": "Enable or disable DNS override on WAN interfaces configured using DHCP (optional)"
+        },
+        {
+          "key": "dnslocalhost",
+          "value": "<bool>",
+          "description": "Enable or disable local system DNS queries (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/system/dns/delete/servers/",
+      "description": "Modify the existing system DNS configuration",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/system/dns/delete/servers/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "dnsserver",
+          "value": "<array> or <string>",
+          "description": "Specify the IP(s) of the DNS servers to delete. Single values may be specified as string, multiple values may be specified as array"
+        }
+      ]
+    },
+    {
+      "name": "/status/carp/",
+      "description": "Read the CARP (failover) status",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/status/carp/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/status/carp/modify/",
+      "description": "Read the CARP (failover) status",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/status/carp/modify/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "enable",
+          "value": "<bool>",
+          "description": "Enable or disable CARP. Requires bool (optional)"
+        },
+        {
+          "key": "maintenance_mode",
+          "value": "<bool>",
+          "description": "Enable or disable CARP maintenance mode. Requires bool (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/services/unbound/",
+      "description": "Read DNS Resolver (Unbound) configuration. _Note: Extended search requires array of extended attributes in JSON format_",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/services/unbound/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/services/unbound/start",
+      "description": "Start the DNS Resolver (Unbound) service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/unbound/start/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/unbound/restart",
+      "description": "Restart the DNS Resolver (Unbound) service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/unbound/restart/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/unbound/stop/",
+      "description": "Stop the DNS Resolver (Unbound) service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/unbound/stop/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/unbound/add/hosts/",
+      "description": "Add a new host override to DNS Resolver (Unbound)",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/unbound/add/hosts/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "host",
+          "value": "<string>",
+          "description": "Hostname of new DNS A record"
+        },
+        {
+          "key": "domain",
+          "value": "<string>",
+          "description": "Domain of new DNS A record"
+        },
+        {
+          "key": "ip",
+          "value": "<string>",
+          "description": "IPv4 or IPv6 of new DNS A record"
+        },
+        {
+          "key": "descr",
+          "value": "<string>",
+          "description": "Description of host override (optional)"
+        },
+        {
+          "key": "aliases",
+          "value": "<array>",
+          "description": "Hostname aliases (CNAME) for host override (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/services/unbound/delete/hosts/",
+      "description": "Delete host overrides from DNS Resolver (Unbound) by hostname, domain, and/or IP. Return data includes list of host and alias FQDNs removed during API call.",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/unbound/delete/hosts/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "{{$client_id}}",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "{{$client_token}}",
+          "description": "API client token"
+        },
+        {
+          "key": "host",
+          "value": "{{$host}}",
+          "description": "Hostname of host override(s) to delete. This may be combined with a domain name and/or IP address for more specific deletions, or it may be used standalone to delete all host overrides that match the specified hostname"
+        },
+        {
+          "key": "domain",
+          "value": "{{$domain}}",
+          "description": "Domain of host override(s) to delete. This may be combined with a hostname and/or IP address for more specific deletions, or it may be used standalone to delete all host overrides that match the specified domain"
+        },
+        {
+          "key": "ip",
+          "value": "{{$ip}}",
+          "description": "IPv4/IPv6 address of host override(s) to delete. This may be combined with a hostname and/or domain name for more specific deletions, or it may be used standalone to delete all host overrides that match the specified IPv4/IPv6 address"
+        },
+        {
+          "key": "aliases",
+          "value": "{{$aliases}}",
+          "description": "Delete aliases upon host and/or domain match (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/services/unbound/modify/hosts/",
+      "description": "Modify host overrides from DNS Resolver (Unbound). Host overrides may be modified in full by specifying the override's exact hostname and domain, or you may update the IP address of all host overrides that match a specified IP. Return data includes all updated entries.",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/unbound/modify/hosts/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "host",
+          "value": "<string>",
+          "description": "Hostname of host override to modify. If specified, a `domain` value must be specified."
+        },
+        {
+          "key": "domain",
+          "value": "<string>",
+          "description": "Domain of host override to modify. Only necessary if a `host` value was provided. "
+        },
+        {
+          "key": "ip",
+          "value": "<string>",
+          "description": "IPv4/IPv6 address of host overrides to update IP. If specified, a `new_ip`value must be specified. If `host` and `domain` value are specified, this value will be ignored. "
+        },
+        {
+          "key": "descr",
+          "value": "<string>",
+          "description": "Specify a new host override description. Only available if a `host` value was provided.  (optional)"
+        },
+        {
+          "key": "aliases",
+          "value": "<string> or <array>",
+          "description": "Specify a new array of host override aliases. This array will override any existing aliases and  must contain `host`, `domain`, and `descr` values for each alias. (optional)"
+        },
+        {
+          "key": "new_host",
+          "value": "<string>",
+          "description": "Specify a new hostname for the host override. Only available if a `host` value was provided.  (optional) "
+        },
+        {
+          "key": "new_domain",
+          "value": "<string>",
+          "description": "Specify a new domain for the host override. Only available if a `host` value was provided.  (optional) "
+        },
+        {
+          "key": "new_ip",
+          "value": "<string>",
+          "description": "Specify a new IPv4/IPv6 for the host override. Required if `ip` value was provided."
+        }
+      ]
+    },
+    {
+      "name": "/services/dhcpd/start",
+      "description": "Start the dhcpd service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/dhcpd/start/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/dhcpd/restart",
+      "description": "Restart the dhcpd service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/dhcpd/restart/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/dhcpd/stop/",
+      "description": "Stop the dhcpd service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/dhcpd/stop/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/dpinger/start",
+      "description": "Start the dpinger service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/dpinger/start/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/dpinger/restart",
+      "description": "Restart the dhcpd service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/dpinger/restart/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/dpinger/stop/",
+      "description": "Stop the dpinger service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/dpinger/stop/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/ntpd/start",
+      "description": "Start the ntpd service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/ntpd/start/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/ntpd/restart",
+      "description": "Restart the ntpd service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/ntpd/restart/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/ntpd/stop/",
+      "description": "Stop the dpinger service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/ntpd/stop/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/sshd/start",
+      "description": "Start the sshd service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/sshd/start/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/sshd/modify/",
+      "description": "Modify the sshd service configuration",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/sshd/modify/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "enable",
+          "value": "<bool>",
+          "description": "Enable or disable sshd. Do not specify to retain existing value (optional)"
+        },
+        {
+          "key": "sshdkeyonly",
+          "value": "<string>",
+          "description": "Set the sshd auth type. Use `disabled` for password or pubkey, `enabled` for pubkey only, or `both` to require both a password and pubkey. Do not specify to retain existing value (optional)"
+        },
+        {
+          "key": "sshdagentforwarding",
+          "value": "<bool>",
+          "description": "Enable or disable sshd agent forwarding. Do not specify to retain existing value (optional)"
+        },
+        {
+          "key": "port",
+          "value": "<int> or <string>",
+          "description": "Set the port sshd will bind to. Do not specify to retain existing value (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/services/sshd/restart",
+      "description": "Restart the sshd service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/sshd/restart/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/sshd/stop/",
+      "description": "Stop the sshd service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/sshd/stop/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/sshd/",
+      "description": "Read sshd configuration. _Note: Extended search requires array of extended attributes in JSON format_",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/services/sshd/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/services/syslogd/start",
+      "description": "Start the sshd service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/syslogd/start/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/syslogd/restart",
+      "description": "Restart the sshd service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/syslogd/restart/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/syslogd/stop/",
+      "description": "Stop the syslogd service",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/syslogd/stop/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        }
+      ]
+    },
+    {
+      "name": "/services/",
+      "description": "Read available services. _Note: Extended search requires array of extended attributes in JSON format_",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/services/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "name",
+          "value": "<string>",
+          "description": "Specify an indivdual service to return (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/services/start/",
+      "description": "Start all available services",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/start/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "service",
+          "value": "<string> or <array>",
+          "description": "Specify which services to start. Single values may be passed in as string, multiple values must be passed in as array (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/services/stop/",
+      "description": "Stop all available services",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/stop/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "service",
+          "value": "<string> or <array>",
+          "description": "Specify which services to stop. Single values may be passed in as string, multiple values must be passed in as array (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/services/restart/",
+      "description": "Restart all available services",
+      "method": "POST",
+      "url": "https://{{$hostname}}/api/v1/services/restart/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "service",
+          "value": "<string> or <array>",
+          "description": "Specify which services to restart. Single values may be passed in as string, multiple values must be passed in as array (optional)"
+        }
+      ]
+    },
+    {
+      "name": "/routing/gateways/",
+      "description": "Read routing gateways. _Note: Extended search requires array of extended attributes in JSON format_",
+      "method": "GET",
+      "url": "https://{{$hostname}}/api/v1/routing/gateways/",
+      "query": [
+        {
+          "key": "client-id",
+          "value": "<string>",
+          "description": "API client ID"
+        },
+        {
+          "key": "client-token",
+          "value": "<string>",
+          "description": "API client token"
+        },
+        {
+          "key": "search",
+          "value": "<array>",
+          "description": "Extended search queries in array format (optional)"
+        }
+      ]
+    }
+  ]
+}

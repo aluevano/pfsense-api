@@ -1,0 +1,64 @@
+html {
+    background-color: #4b4b4b;
+    font-family: "Helvetica Neue";
+    color: white;
+}
+
+.logo {
+    width: 90%;
+    display: block;
+    margin: 0 auto;
+}
+
+p, h1, h2, h3, pre, li {
+    margin-left: 30px;
+    margin-right: 30px;
+    text-align: justify;
+}
+
+.cli {
+    background-color: #333333;
+    width: auto;
+    overflow-x: scroll;
+}
+
+.content_container {
+    background-color: #727272;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 10px;
+
+}
+
+.api_call_container {
+    margin-bottom: 20px;
+    border-bottom: 2px solid white;
+}
+
+.api_call_container h2, p {
+    margin-left: 30px;
+}
+
+.param_table {
+    background-color: #909090;
+    width: 95%;
+    margin: 20px 30px;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.param_table td, th {
+    padding: 10px;
+}
+
+.param_table th {
+     background-color: #333333;
+ }
+
+.param_table td {
+    border: 1px solid #9b9b9b;
+}
+
+footer p{
+    text-align: center;
+}
