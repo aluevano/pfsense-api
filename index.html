@@ -2,12 +2,14 @@
 <!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
+    <meta name="google-site-verification" content="gh4B9n-1raaD9BtdLzYUVUwTOPQv_0xq5qZ1HgClLM4" />
     <link rel="stylesheet" type="text/css" href="documentation.css">
 </head>
 <body>
 <img class="logo" src="files/logo.png">
 <div class="content_container">
-    <br><h1>Introduction</h1>
+    <br><h1>pfSense-API Documentation</h1>
+    <h2>Introduction</h2>
     <p>
         pfSense API is a fast, safe, full-fledged API based on REST architecture.
         This works by leveraging the same PHP functions and processes used by
@@ -19,7 +21,7 @@
         preventing the need for a reboot. All this results in the fastest,
         safest, and easiest way to automate pfSense!
     </p>
-    <br><h1>Installation</h1>
+    <br><h2>Installation</h2>
     <p>To install pfSense API, simply run the following command from the pfSense shell:<br></p>
     <div class="cli"><pre>pkg add https://github.com/jaredhendrickson13/pfsense-api/releases/v0.0.1/pfSense-pkg-API-0.0_1.txz</pre></div>
     <p>To uninstall, run the following command:<br></p>
@@ -29,28 +31,28 @@
             navigating to 'Diagnostics > Command Prompt' and enter the commands there
         </i>
     </p>
-    <br><h1>Requirements</h1>
+    <br><h2>Requirements</h2>
     <li>pfSense 2.4.4 or later is supported</li><br>
     <li>pfSense API requires a local user account in pfSense. The same permissions required to make configurations in the webConfigurator are required to make calls to the API endpoints</li><br>
     <li>While not an enforced requirement, it is STRONGLY recommended that you configure pfSense to use HTTPS instead of HTTP. This ensures that login credentials and/or API tokens remain secure in-transit</li><br>
-    <br><h1>Response Codes</h1>
+    <br><h2>Response Codes</h2>
     <p>`200 (OK)` : API call succeeded<p>
     <p>`400 (Bad Request)` : An error was found within your requested parameters</p>
     <p>`401 (Unauthorized)` : API client has not completed authentication or authorization successfully</p>
     <p>`403 (Forbidden)` : The API endpoint has refused your call. Commonly due to your access settings found in `System > API`</p>
     <p>`404 (Not found)` : Either the API endpoint or requested data was not found</p>
     <p>`500 (Server error)` : The API endpoint encountered an unexpected error processing your API request</p>
-    <br><h1>Error Codes</h1>
+    <br><h2>Error Codes</h2>
     <p>
         A full list of error codes can be found by navigating to /api/v1/system/api/errors/ after installation. This
         will return JSON data containing each error code and their corresponding error message. No authentication is
         required to view the error code library. This also makes API integration with third-party software easy as
         the API error codes and messages are always just an HTTP call away!
     </p>
-    <br><h1>Requests</h1>
+    <br><h2>Requests</h2>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /users/</h2>
+        <h3><span style="color:#bcff82">GET</span> /users/</h3>
         <p>https://{{$hostname}}/api/v1/users/</p>
         <p>Reads the local user database</p>
         <table class="param_table">
@@ -78,7 +80,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /users/add/</h2>
+        <h3><span style="color:#ffba52">POST</span> /users/add/</h3>
         <p>https://{{$hostname}}/api/v1/users/add/</p>
         <p>Add a new pfSense user to the local database</p>
         <table class="param_table">
@@ -124,7 +126,7 @@
             </tr>
             <tr>
                 <td>disabled</td>
-                <td></td>
+                <td>bool</td>
                 <td>Disable user account upon creation. Do not include to leave enabled. (optional)</td>
             </tr>
             <tr>
@@ -136,7 +138,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /users/modify/</h2>
+        <h3><span style="color:#ffba52">POST</span> /users/modify/</h3>
         <p>https://{{$hostname}}/api/v1/users/modify/</p>
         <p>Update an existing user configuration</p>
         <table class="param_table">
@@ -182,7 +184,7 @@
             </tr>
             <tr>
                 <td>disabled</td>
-                <td></td>
+                <td>bool</td>
                 <td>Disable user account  (optional)</td>
             </tr>
             <tr>
@@ -194,7 +196,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /users/delete/</h2>
+        <h3><span style="color:#ffba52">POST</span> /users/delete/</h3>
         <p>https://{{$hostname}}/api/v1/users/delete/</p>
         <p>Delete an existing pfSense user from the local database</p>
         <table class="param_table">
@@ -222,7 +224,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /users/add/privs/</h2>
+        <h3><span style="color:#ffba52">POST</span> /users/add/privs/</h3>
         <p>https://{{$hostname}}/api/v1/users/add/privs/</p>
         <p>Add a new privilege to an existing user _Note: this function is stateless. Privileges that are already assigned will still receive a 200 OK response as long as the end result contains the privilege in the user's configuration_</p>
         <table class="param_table">
@@ -255,7 +257,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /users/delete/privs/</h2>
+        <h3><span style="color:#ffba52">POST</span> /users/delete/privs/</h3>
         <p>https://{{$hostname}}/api/v1/users/delete/privs/</p>
         <p>Delete an existing privilege from an existing user</p>
         <table class="param_table">
@@ -288,7 +290,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /users/add/groups/</h2>
+        <h3><span style="color:#ffba52">POST</span> /users/add/groups/</h3>
         <p>https://{{$hostname}}/api/v1/users/add/groups/</p>
         <p>Assign user to a group _Note: this function is stateless. Groups that are already assigned will still receive a 200 OK response as long as the end result contains the group in the user's configuration_</p>
         <table class="param_table">
@@ -321,7 +323,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /users/delete/groups/</h2>
+        <h3><span style="color:#ffba52">POST</span> /users/delete/groups/</h3>
         <p>https://{{$hostname}}/api/v1/users/delete/groups/</p>
         <p>Delete user from a group</p>
         <table class="param_table">
@@ -354,7 +356,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /users/authservers/</h2>
+        <h3><span style="color:#bcff82">GET</span> /users/authservers/</h3>
         <p>https://{{$hostname}}/api/v1/users/authservers/</p>
         <p>Read configured LDAP and RADIUS authentication servers</p>
         <table class="param_table">
@@ -382,7 +384,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /users/authservers/ldap/</h2>
+        <h3><span style="color:#bcff82">GET</span> /users/authservers/ldap/</h3>
         <p>https://{{$hostname}}/api/v1/users/authservers/ldap/</p>
         <p>Read configured LDAP authentication servers</p>
         <table class="param_table">
@@ -410,7 +412,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /users/authservers/ldap/add/</h2>
+        <h3><span style="color:#ffba52">POST</span> /users/authservers/ldap/add/</h3>
         <p>https://{{$hostname}}/api/v1/users/authservers/ldap/add/</p>
         <p>Add a new remote LDAP authentication server</p>
         <table class="param_table">
@@ -523,7 +525,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /users/authservers/ldap/delete/</h2>
+        <h3><span style="color:#ffba52">POST</span> /users/authservers/ldap/delete/</h3>
         <p>https://{{$hostname}}/api/v1/users/authservers/ldap/delete/</p>
         <p>Delete an existing LDAP authentication server _Note: this function does not check for the existence of an existing configuration, rather that it does not exist at the end of the call_</p>
         <table class="param_table">
@@ -551,7 +553,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /users/authservers/radius/delete/</h2>
+        <h3><span style="color:#ffba52">POST</span> /users/authservers/radius/delete/</h3>
         <p>https://{{$hostname}}/api/v1/users/authservers/radius/delete/</p>
         <p>Delete an existing RADIUS authentication server _Note: this function does not check for the existence of an existing configuration, rather that it does not exist at the end of the call_</p>
         <table class="param_table">
@@ -579,7 +581,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /users/authservers/delete/</h2>
+        <h3><span style="color:#ffba52">POST</span> /users/authservers/delete/</h3>
         <p>https://{{$hostname}}/api/v1/users/authservers/delete/</p>
         <p>Delete an existing authentication server. This can be either a RADIUS or LDAP authentication server _Note: this function does not check for the existence of an existing configuration, rather that it does not exist at the end of the call_</p>
         <table class="param_table">
@@ -607,7 +609,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /users/authservers/radius/</h2>
+        <h3><span style="color:#bcff82">GET</span> /users/authservers/radius/</h3>
         <p>https://{{$hostname}}/api/v1/users/authservers/radius/</p>
         <p>Read configured RADIUS authentication servers</p>
         <table class="param_table">
@@ -635,7 +637,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /interfaces/</h2>
+        <h3><span style="color:#bcff82">GET</span> /interfaces/</h3>
         <p>https://{{$hostname}}/api/v1/interfaces/</p>
         <p>Read interface assignements and configuration. _Note: Extended search requires array of extended attributes in JSON format_</p>
         <table class="param_table">
@@ -663,7 +665,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /interfaces/add/</h2>
+        <h3><span style="color:#ffba52">POST</span> /interfaces/add/</h3>
         <p>https://{{$hostname}}/api/v1/interfaces/add/</p>
         <p>Add a new VLAN interface</p>
         <table class="param_table">
@@ -886,7 +888,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /interfaces/delete/</h2>
+        <h3><span style="color:#ffba52">POST</span> /interfaces/delete/</h3>
         <p>https://{{$hostname}}/api/v1/interfaces/delete/</p>
         <p>Delete an existing interface</p>
         <table class="param_table">
@@ -914,7 +916,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /interfaces/vlans/</h2>
+        <h3><span style="color:#bcff82">GET</span> /interfaces/vlans/</h3>
         <p>https://{{$hostname}}/api/v1/interfaces/vlans/</p>
         <p>Read VLAN assignements and configuration. _Note: Extended search requires array of extended attributes in JSON format_</p>
         <table class="param_table">
@@ -942,7 +944,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /interfaces/vlans/add/</h2>
+        <h3><span style="color:#ffba52">POST</span> /interfaces/vlans/add/</h3>
         <p>https://{{$hostname}}/api/v1/interfaces/vlans/add/</p>
         <p>Add a new VLAN interface</p>
         <table class="param_table">
@@ -985,7 +987,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /interfaces/vlans/modify/</h2>
+        <h3><span style="color:#ffba52">POST</span> /interfaces/vlans/modify/</h3>
         <p>https://{{$hostname}}/api/v1/interfaces/vlans/modify/</p>
         <p>Modify an existing VLAN configuration
 
@@ -1040,7 +1042,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /interfaces/vlans/delete/</h2>
+        <h3><span style="color:#ffba52">POST</span> /interfaces/vlans/delete/</h3>
         <p>https://{{$hostname}}/api/v1/interfaces/vlans/delete/</p>
         <p>Delete VLAN assignment and configuration</p>
         <table class="param_table">
@@ -1073,7 +1075,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /firewall/aliases/</h2>
+        <h3><span style="color:#bcff82">GET</span> /firewall/aliases/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/aliases/</p>
         <p>Read firewall aliases. _Note: Extended search requires array of extended attributes in JSON format_</p>
         <table class="param_table">
@@ -1101,7 +1103,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /firewall/aliases/add/</h2>
+        <h3><span style="color:#ffba52">POST</span> /firewall/aliases/add/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/aliases/add/</p>
         <p>Add a new host, network or port firewall alias</p>
         <table class="param_table">
@@ -1149,7 +1151,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /firewall/aliases/modify/</h2>
+        <h3><span style="color:#ffba52">POST</span> /firewall/aliases/modify/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/aliases/modify/</p>
         <p>Modify an existing firewall alias</p>
         <table class="param_table">
@@ -1202,7 +1204,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /firewall/aliases/add/address/</h2>
+        <h3><span style="color:#ffba52">POST</span> /firewall/aliases/add/address/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/aliases/add/address/</p>
         <p>Append new address values to an existing firewall alias</p>
         <table class="param_table">
@@ -1240,7 +1242,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /firewall/aliases/delete/address/</h2>
+        <h3><span style="color:#ffba52">POST</span> /firewall/aliases/delete/address/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/aliases/delete/address/</p>
         <p>Delete existing address value(s) from an existing firewall alias</p>
         <table class="param_table">
@@ -1273,7 +1275,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /firewall/aliases/delete/</h2>
+        <h3><span style="color:#ffba52">POST</span> /firewall/aliases/delete/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/aliases/delete/</p>
         <p>Delete an existing alias and reload filter. _Note: this function is stateless and does not check for the existence of an alias, only ensures there is not an alias matching the given alias name at the end of the call_</p>
         <table class="param_table">
@@ -1301,7 +1303,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /firewall/rules/</h2>
+        <h3><span style="color:#bcff82">GET</span> /firewall/rules/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/rules/</p>
         <p>Read firewall rules. _Note: Extended search requires array of extended attributes in JSON format_</p>
         <table class="param_table">
@@ -1329,7 +1331,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /firewall/rules/add/</h2>
+        <h3><span style="color:#ffba52">POST</span> /firewall/rules/add/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/rules/add/</p>
         <p>Add a new firewall rule and reload the firewall filter</p>
         <table class="param_table">
@@ -1422,7 +1424,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /firewall/rules/delete/</h2>
+        <h3><span style="color:#ffba52">POST</span> /firewall/rules/delete/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/rules/delete/</p>
         <p>Delete an existing firewall rule by ID _Note: use caution when making this call, removing rules may result in API/webConfigurator lockout_</p>
         <table class="param_table">
@@ -1450,7 +1452,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /firewall/virtualips/</h2>
+        <h3><span style="color:#bcff82">GET</span> /firewall/virtualips/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/virtualips/</p>
         <p>Read virtual IP assignments. _Note: Extended search requires array of extended attributes in JSON format_</p>
         <table class="param_table">
@@ -1478,7 +1480,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /firewall/virtualips/add/</h2>
+        <h3><span style="color:#ffba52">POST</span> /firewall/virtualips/add/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/virtualips/add/</p>
         <p>Add a new virtual IP</p>
         <table class="param_table">
@@ -1546,7 +1548,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /firewall/virtualips/delete/</h2>
+        <h3><span style="color:#ffba52">POST</span> /firewall/virtualips/delete/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/virtualips/delete/</p>
         <p>Delete an existing virtual IP by ID</p>
         <table class="param_table">
@@ -1574,7 +1576,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /firewall/nat/</h2>
+        <h3><span style="color:#bcff82">GET</span> /firewall/nat/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/nat/</p>
         <p>Read NAT configuration and rules. _Note: Extended search requires array of extended attributes in JSON format_</p>
         <table class="param_table">
@@ -1602,7 +1604,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /firewall/nat/portforwards/</h2>
+        <h3><span style="color:#bcff82">GET</span> /firewall/nat/portforwards/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/nat/portforwards/</p>
         <p>Read NAT port forward rules. _Note: Extended search requires array of extended attributes in JSON format_</p>
         <table class="param_table">
@@ -1630,7 +1632,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /firewall/nat/portforwards/add/</h2>
+        <h3><span style="color:#ffba52">POST</span> /firewall/nat/portforwards/add/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/nat/portforwards/add/</p>
         <p>Add a new NAT port forward rule</p>
         <table class="param_table">
@@ -1718,7 +1720,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /firewall/nat/portforwards/delete/</h2>
+        <h3><span style="color:#ffba52">POST</span> /firewall/nat/portforwards/delete/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/nat/portforwards/delete/</p>
         <p>Delete an existing NAT rule by ID _Note: use caution when making this call, removing rules may result in API/webConfigurator lockout_</p>
         <table class="param_table">
@@ -1746,7 +1748,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /firewall/states/</h2>
+        <h3><span style="color:#bcff82">GET</span> /firewall/states/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/states/</p>
         <p>Read the current firewall states</p>
         <table class="param_table">
@@ -1774,7 +1776,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /firewall/states/size/</h2>
+        <h3><span style="color:#bcff82">GET</span> /firewall/states/size/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/states/size/</p>
         <p>Read the maximum firewall state size, the current firewall state size, and the default firewall state size</p>
         <table class="param_table">
@@ -1802,7 +1804,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /firewall/states/size/modify/</h2>
+        <h3><span style="color:#ffba52">POST</span> /firewall/states/size/modify/</h3>
         <p>https://{{$hostname}}/api/v1/firewall/states/size/modify/</p>
         <p>Modify the maximum number of firewall state table entries allowed by the system _Note: use caution when making this call, setting the maximum state table size to a value lower than the current number of firewall state entries WILL choke the system_</p>
         <table class="param_table">
@@ -1830,7 +1832,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /system/version/</h2>
+        <h3><span style="color:#bcff82">GET</span> /system/version/</h3>
         <p>https://{{$hostname}}/api/v1/system/version/</p>
         <p>Read pfSense version data. This includes base version, patch version, buildtime, and last commit</p>
         <table class="param_table">
@@ -1853,7 +1855,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /system/arp/</h2>
+        <h3><span style="color:#bcff82">GET</span> /system/arp/</h3>
         <p>https://{{$hostname}}/api/v1/system/arp/</p>
         <p>Read the current ARP table</p>
         <table class="param_table">
@@ -1876,7 +1878,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /system/arp/delete</h2>
+        <h3><span style="color:#ffba52">POST</span> /system/arp/delete</h3>
         <p>https://{{$hostname}}/api/v1/system/arp/delete/</p>
         <p>Delete an IP from the ARP table _Note: this function is stateless. No post-run check is performed to ensure the entry has been removed_</p>
         <table class="param_table">
@@ -1904,7 +1906,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /system/config/</h2>
+        <h3><span style="color:#bcff82">GET</span> /system/config/</h3>
         <p>https://{{$hostname}}/api/v1/system/config/</p>
         <p>Reads entire pfSense configuration. _Note: Extended search requires array of extended attributes in JSON format_</p>
         <table class="param_table">
@@ -1932,7 +1934,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /system/hostname/</h2>
+        <h3><span style="color:#bcff82">GET</span> /system/hostname/</h3>
         <p>https://{{$hostname}}/api/v1/system/hostname/</p>
         <p>Read pfSense system hostname. _Note: Extended search requires array of extended attributes in JSON format_</p>
         <table class="param_table">
@@ -1960,7 +1962,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /system/hostname/modify</h2>
+        <h3><span style="color:#ffba52">POST</span> /system/hostname/modify</h3>
         <p>https://{{$hostname}}/api/v1/system/hostname/modify/</p>
         <p>Change our system hostname</p>
         <table class="param_table">
@@ -1993,7 +1995,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /system/certificates/</h2>
+        <h3><span style="color:#bcff82">GET</span> /system/certificates/</h3>
         <p>https://{{$hostname}}/api/v1/system/certificates/</p>
         <p>Read available SSL certificates. _Note: Extended search requires array of extended attributes in JSON format_</p>
         <table class="param_table">
@@ -2021,7 +2023,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /system/certificates/add/</h2>
+        <h3><span style="color:#ffba52">POST</span> /system/certificates/add/</h3>
         <p>https://{{$hostname}}/api/v1/system/certificates/add/</p>
         <p>Add a new SSL certificate</p>
         <table class="param_table">
@@ -2069,7 +2071,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /system/certificates/delete/</h2>
+        <h3><span style="color:#ffba52">POST</span> /system/certificates/delete/</h3>
         <p>https://{{$hostname}}/api/v1/system/certificates/delete/</p>
         <p>Delete an existing certificate</p>
         <table class="param_table">
@@ -2107,7 +2109,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /system/api/</h2>
+        <h3><span style="color:#bcff82">GET</span> /system/api/</h3>
         <p>https://{{$hostname}}/api/v1/system/api/</p>
         <p>Read current API configuration _Note: Extended search requires array of extended attributes in JSON format_</p>
         <table class="param_table">
@@ -2135,7 +2137,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /system/api/errors/</h2>
+        <h3><span style="color:#bcff82">GET</span> /system/api/errors/</h3>
         <p>https://{{$hostname}}/api/v1/system/api/errors/</p>
         <p>Read our error code library. This function does NOT require authentication and is intended to be used by third-party scripts/software to translate error codes to their full error message.</p>
         <table class="param_table">
@@ -2158,7 +2160,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /system/dns/</h2>
+        <h3><span style="color:#bcff82">GET</span> /system/dns/</h3>
         <p>https://{{$hostname}}/api/v1/system/dns/</p>
         <p>Read current system DNS configuration _Note: Extended search requires array of extended attributes in JSON format_</p>
         <table class="param_table">
@@ -2186,7 +2188,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /system/dns/modify/</h2>
+        <h3><span style="color:#ffba52">POST</span> /system/dns/modify/</h3>
         <p>https://{{$hostname}}/api/v1/system/dns/modify/</p>
         <p>Modify the existing system DNS configuration</p>
         <table class="param_table">
@@ -2224,7 +2226,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /system/dns/delete/servers/</h2>
+        <h3><span style="color:#ffba52">POST</span> /system/dns/delete/servers/</h3>
         <p>https://{{$hostname}}/api/v1/system/dns/delete/servers/</p>
         <p>Modify the existing system DNS configuration</p>
         <table class="param_table">
@@ -2252,7 +2254,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /status/carp/</h2>
+        <h3><span style="color:#bcff82">GET</span> /status/carp/</h3>
         <p>https://{{$hostname}}/api/v1/status/carp/</p>
         <p>Read the CARP (failover) status</p>
         <table class="param_table">
@@ -2280,7 +2282,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /status/carp/modify/</h2>
+        <h3><span style="color:#ffba52">POST</span> /status/carp/modify/</h3>
         <p>https://{{$hostname}}/api/v1/status/carp/modify/</p>
         <p>Read the CARP (failover) status</p>
         <table class="param_table">
@@ -2313,7 +2315,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /services/unbound/</h2>
+        <h3><span style="color:#bcff82">GET</span> /services/unbound/</h3>
         <p>https://{{$hostname}}/api/v1/services/unbound/</p>
         <p>Read DNS Resolver (Unbound) configuration. _Note: Extended search requires array of extended attributes in JSON format_</p>
         <table class="param_table">
@@ -2341,7 +2343,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/unbound/start</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/unbound/start</h3>
         <p>https://{{$hostname}}/api/v1/services/unbound/start/</p>
         <p>Start the DNS Resolver (Unbound) service</p>
         <table class="param_table">
@@ -2364,7 +2366,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/unbound/restart</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/unbound/restart</h3>
         <p>https://{{$hostname}}/api/v1/services/unbound/restart/</p>
         <p>Restart the DNS Resolver (Unbound) service</p>
         <table class="param_table">
@@ -2387,7 +2389,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/unbound/stop/</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/unbound/stop/</h3>
         <p>https://{{$hostname}}/api/v1/services/unbound/stop/</p>
         <p>Stop the DNS Resolver (Unbound) service</p>
         <table class="param_table">
@@ -2410,7 +2412,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/unbound/add/hosts/</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/unbound/add/hosts/</h3>
         <p>https://{{$hostname}}/api/v1/services/unbound/add/hosts/</p>
         <p>Add a new host override to DNS Resolver (Unbound)</p>
         <table class="param_table">
@@ -2458,7 +2460,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/unbound/delete/hosts/</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/unbound/delete/hosts/</h3>
         <p>https://{{$hostname}}/api/v1/services/unbound/delete/hosts/</p>
         <p>Delete host overrides from DNS Resolver (Unbound) by hostname, domain, and/or IP. Return data includes list of host and alias FQDNs removed during API call.</p>
         <table class="param_table">
@@ -2501,7 +2503,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/unbound/modify/hosts/</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/unbound/modify/hosts/</h3>
         <p>https://{{$hostname}}/api/v1/services/unbound/modify/hosts/</p>
         <p>Modify host overrides from DNS Resolver (Unbound). Host overrides may be modified in full by specifying the override's exact hostname and domain, or you may update the IP address of all host overrides that match a specified IP. Return data includes all updated entries.</p>
         <table class="param_table">
@@ -2564,7 +2566,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/dhcpd/start</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/dhcpd/start</h3>
         <p>https://{{$hostname}}/api/v1/services/dhcpd/start/</p>
         <p>Start the dhcpd service</p>
         <table class="param_table">
@@ -2587,7 +2589,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/dhcpd/restart</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/dhcpd/restart</h3>
         <p>https://{{$hostname}}/api/v1/services/dhcpd/restart/</p>
         <p>Restart the dhcpd service</p>
         <table class="param_table">
@@ -2610,7 +2612,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/dhcpd/stop/</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/dhcpd/stop/</h3>
         <p>https://{{$hostname}}/api/v1/services/dhcpd/stop/</p>
         <p>Stop the dhcpd service</p>
         <table class="param_table">
@@ -2633,7 +2635,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/dpinger/start</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/dpinger/start</h3>
         <p>https://{{$hostname}}/api/v1/services/dpinger/start/</p>
         <p>Start the dpinger service</p>
         <table class="param_table">
@@ -2656,7 +2658,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/dpinger/restart</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/dpinger/restart</h3>
         <p>https://{{$hostname}}/api/v1/services/dpinger/restart/</p>
         <p>Restart the dhcpd service</p>
         <table class="param_table">
@@ -2679,7 +2681,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/dpinger/stop/</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/dpinger/stop/</h3>
         <p>https://{{$hostname}}/api/v1/services/dpinger/stop/</p>
         <p>Stop the dpinger service</p>
         <table class="param_table">
@@ -2702,7 +2704,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/ntpd/start</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/ntpd/start</h3>
         <p>https://{{$hostname}}/api/v1/services/ntpd/start/</p>
         <p>Start the ntpd service</p>
         <table class="param_table">
@@ -2725,7 +2727,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/ntpd/restart</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/ntpd/restart</h3>
         <p>https://{{$hostname}}/api/v1/services/ntpd/restart/</p>
         <p>Restart the ntpd service</p>
         <table class="param_table">
@@ -2748,7 +2750,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/ntpd/stop/</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/ntpd/stop/</h3>
         <p>https://{{$hostname}}/api/v1/services/ntpd/stop/</p>
         <p>Stop the dpinger service</p>
         <table class="param_table">
@@ -2771,7 +2773,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/sshd/start</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/sshd/start</h3>
         <p>https://{{$hostname}}/api/v1/services/sshd/start/</p>
         <p>Start the sshd service</p>
         <table class="param_table">
@@ -2794,7 +2796,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/sshd/modify/</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/sshd/modify/</h3>
         <p>https://{{$hostname}}/api/v1/services/sshd/modify/</p>
         <p>Modify the sshd service configuration</p>
         <table class="param_table">
@@ -2837,7 +2839,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/sshd/restart</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/sshd/restart</h3>
         <p>https://{{$hostname}}/api/v1/services/sshd/restart/</p>
         <p>Restart the sshd service</p>
         <table class="param_table">
@@ -2860,7 +2862,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/sshd/stop/</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/sshd/stop/</h3>
         <p>https://{{$hostname}}/api/v1/services/sshd/stop/</p>
         <p>Stop the sshd service</p>
         <table class="param_table">
@@ -2883,7 +2885,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /services/sshd/</h2>
+        <h3><span style="color:#bcff82">GET</span> /services/sshd/</h3>
         <p>https://{{$hostname}}/api/v1/services/sshd/</p>
         <p>Read sshd configuration. _Note: Extended search requires array of extended attributes in JSON format_</p>
         <table class="param_table">
@@ -2911,7 +2913,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/syslogd/start</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/syslogd/start</h3>
         <p>https://{{$hostname}}/api/v1/services/syslogd/start/</p>
         <p>Start the sshd service</p>
         <table class="param_table">
@@ -2934,7 +2936,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/syslogd/restart</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/syslogd/restart</h3>
         <p>https://{{$hostname}}/api/v1/services/syslogd/restart/</p>
         <p>Restart the sshd service</p>
         <table class="param_table">
@@ -2957,7 +2959,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/syslogd/stop/</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/syslogd/stop/</h3>
         <p>https://{{$hostname}}/api/v1/services/syslogd/stop/</p>
         <p>Stop the syslogd service</p>
         <table class="param_table">
@@ -2980,7 +2982,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /services/</h2>
+        <h3><span style="color:#bcff82">GET</span> /services/</h3>
         <p>https://{{$hostname}}/api/v1/services/</p>
         <p>Read available services. _Note: Extended search requires array of extended attributes in JSON format_</p>
         <table class="param_table">
@@ -3008,7 +3010,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/start/</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/start/</h3>
         <p>https://{{$hostname}}/api/v1/services/start/</p>
         <p>Start all available services</p>
         <table class="param_table">
@@ -3036,7 +3038,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/stop/</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/stop/</h3>
         <p>https://{{$hostname}}/api/v1/services/stop/</p>
         <p>Stop all available services</p>
         <table class="param_table">
@@ -3064,7 +3066,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#ffba52">POST</span> /services/restart/</h2>
+        <h3><span style="color:#ffba52">POST</span> /services/restart/</h3>
         <p>https://{{$hostname}}/api/v1/services/restart/</p>
         <p>Restart all available services</p>
         <table class="param_table">
@@ -3092,7 +3094,7 @@
     </div>
 
     <div class="api_call_container">
-        <h2><span style="color:#bcff82">GET</span> /routing/gateways/</h2>
+        <h3><span style="color:#bcff82">GET</span> /routing/gateways/</h3>
         <p>https://{{$hostname}}/api/v1/routing/gateways/</p>
         <p>Read routing gateways. _Note: Extended search requires array of extended attributes in JSON format_</p>
         <table class="param_table">
