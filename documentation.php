@@ -9,6 +9,7 @@ $doc = json_decode($doc_json, true);
 <head>
     <meta charset="UTF-8">
     <meta name="google-site-verification" content="gh4B9n-1raaD9BtdLzYUVUwTOPQv_0xq5qZ1HgClLM4" />
+    <title>pfSense-API - Jared Hendrickson</title>
     <link rel="stylesheet" type="text/css" href="documentation.css">
 </head>
 <body>
