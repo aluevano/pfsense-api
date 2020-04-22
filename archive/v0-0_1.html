@@ -29,7 +29,7 @@
     <div class="border_line"></div>
     <h2>Installation</h2>
     <p>To install pfSense API, simply run the following command from the pfSense shell:<br></p>
-    <div class="cli"><pre>pkg add https://github.com/jaredhendrickson13/pfsense-api/releases/download/v0.0.2/pfSense-2-4-pkg-API-0.0_2.txz</pre></div>
+    <div class="cli"><pre>pkg add https://github.com/jaredhendrickson13/pfsense-api/releases/download/v0.0.1/pfSense-2-4-pkg-API-0.0_1.txz</pre></div>
     <p>To uninstall, run the following command:<br></p>
     <div class="cli"><pre>pkg delete pfSense-pkg-API</pre></div>
     <p>
@@ -2437,29 +2437,6 @@
     </div>
 
     <div class="api_call_container">
-        <h3><span style="color:#ffba52">POST</span> /services/unbound/apply/</h3>
-        <p>https://{{$hostname}}/api/v1/services/unbound/apply/</p>
-        <p>Apply pending Unbound configuration changes (Unbound)</p>
-        <table class="param_table">
-            <tr>
-                <th>Key</th>
-                <th>Value Type</th>
-                <th>Description</th>
-            </tr>
-            <tr>
-                <td>client-id</td>
-                <td>string</td>
-                <td>API client ID</td>
-            </tr>
-            <tr>
-                <td>client-token</td>
-                <td>string</td>
-                <td>API client token</td>
-            </tr>
-        </table><br>
-    </div>
-
-    <div class="api_call_container">
         <h3><span style="color:#ffba52">POST</span> /services/unbound/add/hosts/</h3>
         <p>https://{{$hostname}}/api/v1/services/unbound/add/hosts/</p>
         <p>Add a new host override to DNS Resolver (Unbound)</p>
@@ -2503,11 +2480,6 @@
                 <td>aliases</td>
                 <td>array</td>
                 <td>Hostname aliases (CNAME) for host override (optional)</td>
-            </tr>
-            <tr>
-                <td>apply</td>
-                <td>bool</td>
-                <td>Apply changes immediately upon entry (optional)</td>
             </tr>
         </table><br>
     </div>
