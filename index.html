@@ -15,7 +15,7 @@
     <div class="border_line"></div>
     <h2>Introduction</h2>
     <p>
-        pfSense API is a fast, safe, full-fledged API based on REST architecture.
+        pfSense API is a fast, safe, full-fledged HTTP API.
         This works by leveraging the same PHP functions and processes used by
         pfSense's webConfigurator into API endpoints to create, read, update
         and delete pfSense configurations. All API endpoints enforce input
@@ -2439,7 +2439,7 @@
     <div class="api_call_container">
         <h3><span style="color:#ffba52">POST</span> /services/unbound/apply/</h3>
         <p>https://{{$hostname}}/api/v1/services/unbound/apply/</p>
-        <p>Apply pending Unbound configuration changes (Unbound)</p>
+        <p>Apply pending Unbound configuration changes</p>
         <table class="param_table">
             <tr>
                 <th>Key</th>
@@ -2552,6 +2552,11 @@
                 <td>{{$aliases}}</td>
                 <td>Delete aliases upon host and/or domain match (optional)</td>
             </tr>
+            <tr>
+                <td>apply</td>
+                <td>bool</td>
+                <td>Apply changes immediately upon entry (optional)</td>
+            </tr>
         </table><br>
     </div>
 
@@ -2614,6 +2619,11 @@
                 <td>new_ip</td>
                 <td>string</td>
                 <td>Specify a new IPv4/IPv6 for the host override. Required if `ip` value was provided.</td>
+            </tr>
+            <tr>
+                <td>apply</td>
+                <td>bool</td>
+                <td>Apply changes immediately upon entry (optional)</td>
             </tr>
         </table><br>
     </div>
